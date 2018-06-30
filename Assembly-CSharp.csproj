@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Boot.cs" />
     <Compile Include="Assets\Scripts\ComponentTypes.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawnSystem.cs" />
+    <Compile Include="Assets\Scripts\FollowPlayerSystem.cs" />
     <Compile Include="Assets\Scripts\GameplaySettings.cs" />
     <Compile Include="Assets\Scripts\PlayerInputSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerMoveSystem.cs" />

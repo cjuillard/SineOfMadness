@@ -1,5 +1,6 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
+using UnityEngine;
 
 namespace SineOfMadness {
 
@@ -13,8 +14,19 @@ namespace SineOfMadness {
 
     // Purely tag types
     public struct Enemy : IComponentData { }
+    public struct Player : IComponentData { }
+    public struct FollowPlayer : IComponentData { } // this tag will constantly turn the entity's heading the players direction
 
     public struct Health : IComponentData {
         public float Value;
+    }
+
+    public struct EnemySpawnCooldown : IComponentData {
+        public float Value;
+    }
+
+    public struct EnemySpawnSystemState : IComponentData {
+        public int SpawnedEnemyCount;
+        public Random.State RandomState;
     }
 }

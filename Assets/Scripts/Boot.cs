@@ -10,7 +10,7 @@ namespace SineOfMadness {
     public class Boot : MonoBehaviour {
 
         public static EntityArchetype PlayerArchetype;
-        public static EntityArchetype BasicEnemyArchetype;
+        public static EntityArchetype BasicEnemyArchetype;  // follow enemy type
 
         public static MeshInstanceRenderer PlayerLook;
         public static MeshInstanceRenderer BasicEnemyLook;
@@ -27,8 +27,8 @@ namespace SineOfMadness {
             // Archetypes are optional but can speed up entity spawning substantially.
 
             EntityManager entityManager = World.Active.GetOrCreateManager<EntityManager>();
-            PlayerArchetype = entityManager.CreateArchetype(typeof(Position2D), typeof(Heading2D), typeof(PlayerInput),
-                    typeof(TransformMatrix));
+            PlayerArchetype = entityManager.CreateArchetype(typeof(Player), typeof(Health), typeof(Position2D), typeof(Heading2D), 
+                typeof(PlayerInput), typeof(TransformMatrix));
 
             BasicEnemyArchetype = entityManager.CreateArchetype(
                 typeof(Enemy), typeof(Health),
@@ -50,13 +50,13 @@ namespace SineOfMadness {
         private Mesh CreatePlayerMesh() {
             Mesh mesh = new Mesh();
 
-            float width = 5, height = 5;
+            float hWidth = 2.5f, hHeight= 2.5f;
             Vector3[] vertices = new Vector3[4];
             
-            vertices[0] = new Vector3(0, 0, 0);
-            vertices[1] = new Vector3(width, 0, 0);
-            vertices[2] = new Vector3(0, 0, height);
-            vertices[3] = new Vector3(width, 0, height);
+            vertices[0] = new Vector3(-hWidth, 0, -hHeight);
+            vertices[1] = new Vector3(hWidth, 0, -hHeight);
+            vertices[2] = new Vector3(-hWidth, 0, hHeight);
+            vertices[3] = new Vector3(hWidth, 0, hHeight);
 
             mesh.vertices = vertices;
 
@@ -108,6 +108,17 @@ namespace SineOfMadness {
             entityManager.SetComponentData(player, new Heading2D { Value = new float2(0.0f, 1.0f) });
 
             entityManager.AddSharedComponentData(player, PlayerLook);
+
+
+            // TODO test add some enemies
+            Entity enemy = entityManager.CreateEntity(BasicEnemyArchetype);
+
+            entityManager.SetComponentData(enemy, new Position2D { Value = new float2(2.0f, 0.0f) });
+            entityManager.SetComponentData(enemy, new Heading2D { Value = new float2(0.0f, 1.0f) });
+
+            entityManager.AddSharedComponentData(enemy, BasicEnemyLook);
+
+            EnemySpawnSystem.SetupComponentData(entityManager);
         }
     }
 }

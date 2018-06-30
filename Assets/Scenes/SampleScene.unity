@@ -339,7 +339,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 100
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -557,7 +557,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff3764cc9812914e992f7b7ef53abf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerMoveSpeed: 5
+  PlayerMoveSpeed: 40
+  enemyInitialHealth: 10
+  enemySpeed: 10
+  playfield:
+    serializedVersion: 2
+    x: -50
+    y: -50
+    width: 100
+    height: 100
 --- !u!4 &784347126
 Transform:
   m_ObjectHideFlags: 0
@@ -614,7 +622,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedData:
     mesh: {fileID: 0}
-    material: {fileID: 2100000, guid: 5e886e7b030716f4bb4321b1eb65e582, type: 2}
+    material: {fileID: 2100000, guid: 7b0025326a1f7aa4ab8b13a13d590902, type: 2}
     subMesh: 0
     castShadows: 0
     receiveShadows: 0
