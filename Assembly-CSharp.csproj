@@ -67,6 +67,8 @@
     <Compile Include="Assets\Scripts\GameplaySettings.cs" />
     <Compile Include="Assets\Scripts\PlayerInputSystem.cs" />
     <Compile Include="Assets\Scripts\PlayerMoveSystem.cs" />
+    <Compile Include="Assets\Scripts\SM.cs" />
+    <Compile Include="Assets\Scripts\UpdateHUD.cs" />
     <Reference Include="Unity.Transforms">
       <HintPath>C:/Dev/SineOfMadness/Library/ScriptAssemblies/Unity.Transforms.dll</HintPath>
     </Reference>

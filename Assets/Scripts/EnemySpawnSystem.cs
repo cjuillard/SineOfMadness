@@ -69,7 +69,7 @@ namespace SineOfMadness {
         }
 
         float ComputeCooldown() {
-            return 0.15f;
+            return Boot.Settings.spawnDelay;
         }
 
         float2 ComputeSpawnLocation() {

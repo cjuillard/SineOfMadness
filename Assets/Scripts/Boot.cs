@@ -18,8 +18,11 @@ namespace SineOfMadness {
         public static GameplaySettings Settings;
 
         public void Awake() {
+            SM.boot = this;
             Initialize();
             InitializePrototypes();
+
+            World.Active.GetOrCreateManager<UpdateHud>().SetupGameObjects();
         }
 
         public void Initialize() {
