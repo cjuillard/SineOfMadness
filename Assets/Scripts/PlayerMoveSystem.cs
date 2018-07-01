@@ -29,18 +29,13 @@ namespace SineOfMadness {
                 if (playerInput.Fire) {
                     heading = math.normalize(playerInput.Shoot);
 
-                    //playerInput.FireCooldown = settings.playerFireCoolDown;
+                    playerInput.FireCooldown = settings.playerFireCoolDown;
 
-                    //PostUpdateCommands.CreateEntity(TwoStickBootstrap.ShotSpawnArchetype);
-                    //PostUpdateCommands.SetComponent(new ShotSpawnData {
-                    //    Shot = new Shot {
-                    //        TimeToLive = settings.bulletTimeToLive,
-                    //        Energy = settings.playerShotEnergy,
-                    //    },
-                    //    Position = new Position2D { Value = position },
-                    //    Heading = new Heading2D { Value = heading },
-                    //    Faction = Factions.kPlayer,
-                    //});
+                    PostUpdateCommands.CreateEntity(Boot.ShotSpawnArchetype);
+                    PostUpdateCommands.SetComponent(new ShotSpawnData {
+                        Position = new Position2D { Value = position },
+                        Heading = new Heading2D { Value = heading }
+                    });
                 }
 
                 m_Data.Position[index] = new Position2D { Value = position };

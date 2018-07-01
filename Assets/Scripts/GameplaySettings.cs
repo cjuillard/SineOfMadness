@@ -11,5 +11,7 @@ namespace SineOfMadness {
         public float spawnDelay = 0.1f;
 
         public Rect playfield = new Rect { x = -30.0f, y = -30.0f, width = 60.0f, height = 60.0f };
+        public float playerFireCoolDown = .2f;
+        public float bulletMoveSpeed = 10;
     }
 }

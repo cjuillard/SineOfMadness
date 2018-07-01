@@ -12,8 +12,11 @@ namespace SineOfMadness {
         public static EntityArchetype PlayerArchetype;
         public static EntityArchetype BasicEnemyArchetype;  // follow enemy type
 
+        public static EntityArchetype ShotSpawnArchetype;
+
         public static MeshInstanceRenderer PlayerLook;
         public static MeshInstanceRenderer BasicEnemyLook;
+        public static MeshInstanceRenderer PlayerShotLook;
 
         public static GameplaySettings Settings;
 
@@ -38,22 +41,27 @@ namespace SineOfMadness {
                 typeof(Position2D), typeof(Heading2D),
                 typeof(TransformMatrix), typeof(MoveSpeed), typeof(MoveForward));
 
+            ShotSpawnArchetype = entityManager.CreateArchetype(typeof(ShotSpawnData));
+
             GameObject settingsGO = GameObject.Find("GameplaySettings");
             Settings = settingsGO.GetComponent<GameplaySettings>();
         }
 
         public void InitializePrototypes() {
             PlayerLook = GetLookFromPrototype("Prototypes/Player");
-            PlayerLook.mesh = CreatePlayerMesh();
+            PlayerLook.mesh = CreateQuad(5, 5);
 
             BasicEnemyLook = GetLookFromPrototype("Prototypes/BasicEnemy");
-            BasicEnemyLook.mesh = CreatePlayerMesh();
+            BasicEnemyLook.mesh = CreateQuad(5, 5);
+
+            PlayerShotLook = GetLookFromPrototype("Prototypes/PlayerShot");
+            PlayerShotLook.mesh = CreateQuad(3, 3);
         }
 
-        private Mesh CreatePlayerMesh() {
+        private Mesh CreateQuad(float width, float height) {
             Mesh mesh = new Mesh();
 
-            float hWidth = 2.5f, hHeight= 2.5f;
+            float hWidth = width / 2f, hHeight= height / 2f;
             Vector3[] vertices = new Vector3[4];
             
             vertices[0] = new Vector3(-hWidth, 0, -hHeight);

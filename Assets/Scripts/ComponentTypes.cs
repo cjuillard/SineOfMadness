@@ -1,5 +1,6 @@
 ﻿using Unity.Entities;
 using Unity.Mathematics;
+using Unity.Transforms2D;
 using UnityEngine;
 
 namespace SineOfMadness {
@@ -16,6 +17,7 @@ namespace SineOfMadness {
     public struct Enemy : IComponentData { }
     public struct Player : IComponentData { }
     public struct FollowPlayer : IComponentData { } // this tag will constantly turn the entity's heading the players direction
+    public struct PlayerShot : IComponentData { }
 
     public struct Health : IComponentData {
         public float Value;
@@ -23,6 +25,16 @@ namespace SineOfMadness {
 
     public struct EnemySpawnCooldown : IComponentData {
         public float Value;
+    }
+
+    public struct Factions {
+        public const int kPlayer = 0;
+        public const int kEnemy = 1;
+    }
+
+    public struct ShotSpawnData : IComponentData {
+        public Position2D Position;
+        public Heading2D Heading;
     }
 
     public struct EnemySpawnSystemState : IComponentData {
