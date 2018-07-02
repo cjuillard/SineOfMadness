@@ -32,6 +32,10 @@ namespace SineOfMadness {
         public const int kEnemy = 1;
     }
 
+    public struct Shot : IComponentData {
+        public float Energy;
+    }
+
     public struct ShotSpawnData : IComponentData {
         public Position2D Position;
         public Heading2D Heading;

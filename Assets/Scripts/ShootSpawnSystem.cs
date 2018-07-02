@@ -25,9 +25,10 @@ namespace SineOfMadness {
                 em.AddComponent(shotEntity, sd.Position);
                 em.AddComponent(shotEntity, sd.Heading);
                 em.AddComponent(shotEntity, default(TransformMatrix));
-
+                em.AddComponent(shotEntity, new Shot { Energy = Boot.Settings.bulletEnergy });
                 em.AddComponent(shotEntity, new PlayerShot());
                 em.AddComponent(shotEntity, new MoveSpeed { speed = Boot.Settings.bulletMoveSpeed });
+                em.AddComponent(shotEntity, new Health { Value = 1 });
                 em.AddSharedComponent(shotEntity, Boot.PlayerShotLook);
             }
         }
