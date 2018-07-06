@@ -29,6 +29,8 @@ namespace SineOfMadness {
                 em.AddComponent(shotEntity, new PlayerShot());
                 em.AddComponent(shotEntity, new MoveSpeed { speed = Boot.Settings.bulletMoveSpeed });
                 em.AddComponent(shotEntity, new Health { Value = 1 });
+                em.AddComponent(shotEntity, new SpawnableTags { Value = SpawnableTags.FRIENDLY_SHOT });
+
                 em.AddSharedComponent(shotEntity, Boot.PlayerShotLook);
             }
         }

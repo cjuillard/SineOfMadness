@@ -446,8 +446,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 775673083}
-        m_MethodName: NewGame
+      - m_Target: {fileID: 0}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -560,9 +560,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerMoveSpeed: 40
-  enemyInitialHealth: 10
+  playerInitialHealth: 1
+  enemyInitialHealth: 1
   enemySpeed: 10
-  spawnDelay: 0.1
+  spawnDelay: 0.01
   playfield:
     serializedVersion: 2
     x: -50
@@ -571,6 +572,8 @@ MonoBehaviour:
     height: 100
   playerFireCoolDown: 0.2
   bulletMoveSpeed: 80
+  bulletEnergy: 1
+  enemyCollisionRadius: 2.5
 --- !u!4 &784347126
 Transform:
   m_ObjectHideFlags: 0

@@ -14,6 +14,8 @@ namespace SineOfMadness {
 
         public static EntityArchetype ShotSpawnArchetype;
 
+        public static EntityArchetype RoundStatsArchetype;
+
         public static MeshInstanceRenderer PlayerLook;
         public static MeshInstanceRenderer BasicEnemyLook;
         public static MeshInstanceRenderer PlayerShotLook;
@@ -34,14 +36,17 @@ namespace SineOfMadness {
 
             EntityManager entityManager = World.Active.GetOrCreateManager<EntityManager>();
             PlayerArchetype = entityManager.CreateArchetype(typeof(Player), typeof(Health), typeof(Position2D), typeof(Heading2D), 
-                typeof(PlayerInput), typeof(TransformMatrix));
+                typeof(PlayerInput), typeof(TransformMatrix), typeof(SpawnableTags));
 
             BasicEnemyArchetype = entityManager.CreateArchetype(
                 typeof(Enemy), typeof(Health),
                 typeof(Position2D), typeof(Heading2D),
-                typeof(TransformMatrix), typeof(MoveSpeed), typeof(MoveForward));
+                typeof(TransformMatrix), typeof(MoveSpeed), typeof(MoveForward),
+                typeof(SpawnableTags));
 
             ShotSpawnArchetype = entityManager.CreateArchetype(typeof(ShotSpawnData));
+
+            RoundStatsArchetype = entityManager.CreateArchetype(typeof(KillStats));
 
             GameObject settingsGO = GameObject.Find("GameplaySettings");
             Settings = settingsGO.GetComponent<GameplaySettings>();
@@ -118,19 +123,21 @@ namespace SineOfMadness {
             entityManager.SetComponentData(player, new Position2D { Value = new float2(0.0f, 0.0f) });
             entityManager.SetComponentData(player, new Heading2D { Value = new float2(0.0f, 1.0f) });
             entityManager.SetComponentData(player, new Health { Value = Settings.playerInitialHealth});
+            entityManager.SetComponentData(player, new SpawnableTags { Value = SpawnableTags.FRIENDLY });
 
             entityManager.AddSharedComponentData(player, PlayerLook);
 
+            
+            //Entity enemy = entityManager.CreateEntity(BasicEnemyArchetype);
 
-            // TODO test add some enemies
-            Entity enemy = entityManager.CreateEntity(BasicEnemyArchetype);
+            //entityManager.SetComponentData(enemy, new Position2D { Value = new float2(2.0f, 0.0f) });
+            //entityManager.SetComponentData(enemy, new Heading2D { Value = new float2(0.0f, 1.0f) });
 
-            entityManager.SetComponentData(enemy, new Position2D { Value = new float2(2.0f, 0.0f) });
-            entityManager.SetComponentData(enemy, new Heading2D { Value = new float2(0.0f, 1.0f) });
-
-            entityManager.AddSharedComponentData(enemy, BasicEnemyLook);
+            //entityManager.AddSharedComponentData(enemy, BasicEnemyLook);
 
             EnemySpawnSystem.SetupComponentData(entityManager);
+
+            entityManager.CreateEntity(RoundStatsArchetype);
         }
     }
 }

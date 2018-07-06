@@ -9,8 +9,13 @@ namespace SineOfMadness {
             public int Length;
             public ComponentDataArray<EnemySpawnSystemState> State;
         }
-
         [Inject] SpawnData spawnData;
+
+        public struct RoundStatsData {
+            public int Length;
+            public ComponentDataArray<KillStats> State;
+        }
+        [Inject] RoundStatsData roundStatsData;
 
         private Button newGameButton;
         private Text statsText;
@@ -22,8 +27,9 @@ namespace SineOfMadness {
         }
 
         protected override void OnUpdate() {
-            if (spawnData.Length > 0) {
-                statsText.text = $"Spawned Enemies: {spawnData.State[0].SpawnedEnemyCount}";
+            if (spawnData.Length > 0 && roundStatsData.Length > 0) {
+                statsText.text = $"Spawned Enemies: {spawnData.State[0].SpawnedEnemyCount}" +
+                    $"\nKill Count: {roundStatsData.State[0].numberOfKills}";
             }
         }
 

@@ -60,6 +60,8 @@ namespace SineOfMadness {
             PostUpdateCommands.SetComponent(default(Enemy));
             PostUpdateCommands.SetComponent(new Health { Value = Boot.Settings.enemyInitialHealth });
             PostUpdateCommands.SetComponent(new MoveSpeed { speed = Boot.Settings.enemySpeed });
+            PostUpdateCommands.SetComponent(new SpawnableTags { Value = SpawnableTags.ENEMY });
+
             PostUpdateCommands.AddSharedComponent(Boot.BasicEnemyLook);
             
             state.RandomState = Random.state;

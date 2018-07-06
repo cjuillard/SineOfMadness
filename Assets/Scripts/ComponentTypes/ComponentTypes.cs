@@ -32,6 +32,16 @@ namespace SineOfMadness {
         public const int kEnemy = 1;
     }
 
+    public struct SpawnableTags : IComponentData {
+        public const int FRIENDLY = 1;
+        public const int ENEMY = 1 << 1;
+        public const int SHOT = 1 << 2;
+        public const int ENEMY_SHOT = SHOT | ENEMY;
+        public const int FRIENDLY_SHOT = SHOT | FRIENDLY;
+
+        public int Value;
+    }
+
     public struct Shot : IComponentData {
         public float Energy;
     }
