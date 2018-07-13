@@ -58,8 +58,6 @@ namespace SineOfMadness {
             }
         }
 
-
-
         protected override JobHandle OnUpdate(JobHandle inputDeps) {
             return new RemoveDeadJob {
                 playerDead = m_PlayerCheck.PlayerInput.Length == 0,

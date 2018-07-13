@@ -17,15 +17,17 @@ namespace SineOfMadness {
     class ShotDamageSystem : JobComponentSystem {
         struct Players {
             public int Length;
+            [ReadOnly] public EntityArray Entities;
             [ReadOnly] public ComponentDataArray<Position2D> Position;
             [ReadOnly] public ComponentDataArray<PlayerInput> PlayerMarker;
+            public ComponentDataArray<Health> Health;
         }
 
         [Inject] Players m_Players;
 
         struct Enemies {
             public int Length;
-            public EntityArray Entities;
+            [ReadOnly] public EntityArray Entities;
             [ReadOnly] public ComponentDataArray<Position2D> Position;
             [ReadOnly] public ComponentDataArray<Enemy> EnemyMarker;
         }
@@ -39,7 +41,7 @@ namespace SineOfMadness {
         /// </summary>
         struct PlayerShotData {
             public int Length;
-            public EntityArray Entities;
+            [ReadOnly] public EntityArray Entities;
             [ReadOnly] public ComponentDataArray<Shot> Shot;
             [ReadOnly] public ComponentDataArray<Position2D> Position;
             [ReadOnly] public ComponentDataArray<PlayerShot> PlayerShotMarker;
@@ -47,7 +49,36 @@ namespace SineOfMadness {
         [Inject] PlayerShotData m_PlayerShots;
 
         [BurstCompile]
-        struct CollisionJob : IJobParallelFor {
+        struct PlayerCollisionJob : IJobParallelFor {
+            public float CollisionRadiusSquared;
+
+            // Player data
+            [ReadOnly] public EntityArray PlayerEntities;
+            [ReadOnly] public ComponentDataArray<Position2D> PlayerPositions;
+            [NativeDisableParallelForRestriction]
+            public ComponentDataArray<Health> PlayerHealth;
+
+            // Enemies data
+            [ReadOnly] public EntityArray EnemyEntities;
+            [ReadOnly] public ComponentDataArray<Position2D> EnemyPositions;
+
+            public void Execute(int index) {
+                float2 enemyPos = EnemyPositions[index].Value;
+                for (int pi = 0; pi < PlayerEntities.Length; ++pi) {
+                    float2 playerPos = PlayerPositions[pi].Value;
+                    if(math.lengthSquared(playerPos - enemyPos) <= CollisionRadiusSquared) {
+                        Health hp = PlayerHealth[pi];
+                        hp.Value--;
+                        PlayerHealth[pi] = hp;
+                        break;
+                    }
+                }
+
+            }
+        }
+
+        [BurstCompile]
+        struct EnemyCollisionJob : IJobParallelFor {
             public float CollisionRadiusSquared;
             
             [ReadOnly] public EntityArray PlayerShotEntities;
@@ -96,7 +127,7 @@ namespace SineOfMadness {
             if (settings == null)
                 return inputDeps;
 
-            var playersVsEnemies = new CollisionJob {
+            var playersVsEnemies = new EnemyCollisionJob {
                 PlayerShotEntities = m_PlayerShots.Entities,
                 EnemyEntities = m_Enemies.Entities,
                 ShotPositions = m_PlayerShots.Position,
@@ -106,7 +137,16 @@ namespace SineOfMadness {
                 Positions = m_Enemies.Position,
             }.Schedule(m_Enemies.Length, 1, inputDeps);
 
-            return playersVsEnemies;
+            var enemiesVsPlayers = new PlayerCollisionJob {
+                CollisionRadiusSquared = settings.enemyCollisionRadius * settings.enemyCollisionRadius,
+                PlayerEntities = m_Players.Entities,
+                PlayerHealth = m_Players.Health,
+                PlayerPositions = m_Players.Position,
+                EnemyEntities = m_Enemies.Entities,
+                EnemyPositions = m_Enemies.Position
+            }.Schedule(m_Enemies.Length, 1, playersVsEnemies);
+
+            return enemiesVsPlayers;
         }
     }
 }
