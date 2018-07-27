@@ -46,7 +46,7 @@ namespace SineOfMadness {
 
             ShotSpawnArchetype = entityManager.CreateArchetype(typeof(ShotSpawnData));
 
-            RoundStatsArchetype = entityManager.CreateArchetype(typeof(KillStats));
+            RoundStatsArchetype = entityManager.CreateArchetype(typeof(RoundState));
 
             GameObject settingsGO = GameObject.Find("GameplaySettings");
             Settings = settingsGO.GetComponent<GameplaySettings>();

@@ -23,7 +23,7 @@ namespace SineOfMadness {
 
         public struct RoundStatsData {
             public int Length;
-            public ComponentDataArray<KillStats> State;
+            public ComponentDataArray<RoundState> State;
         }
         [Inject] RoundStatsData m_RoundStats;
 
@@ -39,20 +39,22 @@ namespace SineOfMadness {
             [ReadOnly] public ComponentDataArray<SpawnableTags> SpawnableTag;
             public EntityCommandBuffer Commands;
 
-            public ComponentDataArray<KillStats> KillStats;
+            public ComponentDataArray<RoundState> KillStats;
 
             public void Execute() {
                 int numKilled = 0;
                 for (int i = 0; i < Entity.Length; ++i) {
-                    if (Health[i].Value <= 0.0f || playerDead) {
-                        if((SpawnableTag[i].Value & SpawnableTags.FRIENDLY_SHOT) == 0)
+                    //if (Health[i].Value <= 0.0f || playerDead) {
+                    if (Health[i].Value <= 0.0f)
+                    {
+                        if ((SpawnableTag[i].Value & SpawnableTags.FRIENDLY_SHOT) == 0)
                             numKilled++;
 
                         Commands.DestroyEntity(Entity[i]);
                     }
                 }
 
-                KillStats stats = KillStats[0];
+                RoundState stats = KillStats[0];
                 stats.numberOfKills += numKilled;
                 KillStats[0] = stats;
             }

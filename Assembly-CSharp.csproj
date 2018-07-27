@@ -68,6 +68,7 @@
     <Compile Include="Assets\Scripts\Systems\EnemyCollisionSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\EnemySpawnSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\FollowPlayerSystem.cs" />
+    <Compile Include="Assets\Scripts\Systems\GameOverSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\PlayerInputSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\PlayerMoveSystem.cs" />
     <Compile Include="Assets\Scripts\Systems\RemoveDeadSystem.cs" />

@@ -1,7 +1,7 @@
 ﻿using Unity.Entities;
 
 namespace SineOfMadness {
-    public struct KillStats : IComponentData {
+    public struct RoundState : IComponentData {
         public int numberOfKills;
     }
 }

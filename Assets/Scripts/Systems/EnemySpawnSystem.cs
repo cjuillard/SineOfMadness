@@ -21,7 +21,8 @@ namespace SineOfMadness {
             var oldState = Random.state;
             Random.InitState(0xaf77);
             entityManager.SetComponentData(stateEntity, new EnemySpawnCooldown { Value = 0.0f });
-            entityManager.SetComponentData(stateEntity, new EnemySpawnSystemState {
+            entityManager.SetComponentData(stateEntity, new EnemySpawnSystemState
+            {
                 SpawnedEnemyCount = 0,
                 RandomState = Random.state
             });

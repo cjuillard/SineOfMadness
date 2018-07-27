@@ -13,7 +13,7 @@ namespace SineOfMadness {
 
         public struct RoundStatsData {
             public int Length;
-            public ComponentDataArray<KillStats> State;
+            public ComponentDataArray<RoundState> State;
         }
         [Inject] RoundStatsData roundStatsData;
 
