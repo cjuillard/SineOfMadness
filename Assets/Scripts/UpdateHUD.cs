@@ -1,4 +1,5 @@
-﻿using Unity.Entities;
+﻿using System;
+using Unity.Entities;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -31,6 +32,10 @@ namespace SineOfMadness {
                 statsText.text = $"Spawned Enemies: {spawnData.State[0].SpawnedEnemyCount}" +
                     $"\nKill Count: {roundStatsData.State[0].numberOfKills}";
             }
+        }
+
+        public void OnGameEnd() {
+            newGameButton.gameObject.SetActive(true);
         }
 
         public void OnNewGamePressed() {

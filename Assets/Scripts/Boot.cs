@@ -120,7 +120,7 @@ namespace SineOfMadness {
             EntityManager entityManager = World.Active.GetOrCreateManager<EntityManager>();
             Entity player = entityManager.CreateEntity(PlayerArchetype);
 
-            entityManager.SetComponentData(player, new Position2D { Value = new float2(60f, 0.0f) });
+            entityManager.SetComponentData(player, new Position2D { Value = new float2(0, 0.0f) });
             entityManager.SetComponentData(player, new Heading2D { Value = new float2(0.0f, 1.0f) });
             entityManager.SetComponentData(player, new Health { Value = Settings.playerInitialHealth});
             entityManager.SetComponentData(player, new SpawnableTags { Value = SpawnableTags.FRIENDLY });

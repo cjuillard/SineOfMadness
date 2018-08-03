@@ -13,7 +13,14 @@ namespace SineOfMadness {
             public ComponentDataArray<EnemySpawnSystemState> S;
         }
 
+        struct Players {
+            public int Length;
+            public ComponentDataArray<Position2D> Position;
+            public ComponentDataArray<Player> PlayerTag;
+        }
+
         [Inject] State m_State;
+        [Inject] Players players;
 
         public static void SetupComponentData(EntityManager entityManager) {
             var arch = entityManager.CreateArchetype(typeof(EnemySpawnCooldown), typeof(EnemySpawnSystemState));
@@ -77,10 +84,22 @@ namespace SineOfMadness {
 
         float2 ComputeSpawnLocation() {
             var bounds = Boot.Settings.playfield;
+            float minSpawnDist = Boot.Settings.minSpawnDist;
+
             float x = bounds.xMin + (bounds.xMax - bounds.xMin) * Random.value;
             float y = bounds.yMin + (bounds.yMax - bounds.yMin) * Random.value;
 
-            return new float2(x, y);
+            float2 newPos = new float2(x, y);
+            if (players.Length > 0) { 
+                float len2 = math.lengthSquared(players.Position[0].Value - newPos);
+                if(len2 < minSpawnDist * minSpawnDist) {
+                    float2 dir = math.normalize(newPos - players.Position[0].Value);
+                    return players.Position[0].Value + dir * minSpawnDist;
+                }
+            }
+
+            return newPos;
         }
+        
     }
 }

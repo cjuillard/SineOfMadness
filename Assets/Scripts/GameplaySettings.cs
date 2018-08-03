@@ -10,6 +10,7 @@ namespace SineOfMadness {
         public float enemyInitialHealth = 10;
         public float enemySpeed = 2;
         public float spawnDelay = 0.1f;
+        public float minSpawnDist = 10;
 
         public Rect playfield = new Rect { x = -30.0f, y = -30.0f, width = 60.0f, height = 60.0f };
         public float playerFireCoolDown = .2f;

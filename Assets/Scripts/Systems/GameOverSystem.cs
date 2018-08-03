@@ -21,6 +21,7 @@ public class GameOverSystem : ComponentSystem
 
     [Inject] Players players;
     [Inject] Round round;
+    [Inject] UpdateHud updateHud;
 
     protected override void OnUpdate()
     {
@@ -33,6 +34,7 @@ public class GameOverSystem : ComponentSystem
             entityManager.DestroyEntity(entities);
             entities.Dispose();
 
+            updateHud.OnGameEnd();
         }
     }
 }
