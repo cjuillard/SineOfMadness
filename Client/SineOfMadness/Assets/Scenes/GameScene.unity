@@ -988,7 +988,8 @@ MonoBehaviour:
   playerInputBehaviour: {fileID: 1997099287}
   playerPrefab: {fileID: 1618387789101763530, guid: daad9cf058e6baa46b51aca8113e32c0,
     type: 3}
-  enemy1Prefab: {fileID: 0}
+  enemy1Prefab: {fileID: 1618387789101763530, guid: 7f7898a7a9c5e264da051fd50527e5be,
+    type: 3}
   settings: {fileID: 11400000, guid: 5d4e46c24f879f34395217ca1e139977, type: 2}
 --- !u!4 &1997099286
 Transform:
