@@ -9,7 +9,7 @@ namespace DefaultNamespace
     {
         protected override void OnUpdate()
         {
-            ForEach( (ref Boot.Player player, ref PlayerInput playerInput, ref Translation pos, ref Rotation rotation) =>
+            ForEach( (ref Player player, ref PlayerInput playerInput, ref Translation pos, ref Rotation rotation) =>
             {
                 pos.Value.xy += playerInput.Move.xy * player.MaxSpeed;
                 if (math.lengthsq(playerInput.Shoot) != 0)
