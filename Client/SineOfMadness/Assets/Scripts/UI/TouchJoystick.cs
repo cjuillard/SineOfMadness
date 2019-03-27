@@ -20,15 +20,6 @@ public class TouchJoystick : MonoBehaviour, IDragHandler, IPointerDownHandler, I
         outlineImage = circleOutline.GetComponent<Image>();
     }
 
-    void Update()
-    {   
-        Vector3 direction = currPosition.position - circleOutline.position;
-
-        float width = outlineImage.sprite.rect.width;
-        
-//        Debug.Log($"direction={direction}, width={width}");
-    }
-
     public void OnPointerDown(PointerEventData eventData)
     {
         PointerEventData.InputButton button = eventData.button;
