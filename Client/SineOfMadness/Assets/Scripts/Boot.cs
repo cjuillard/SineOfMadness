@@ -40,7 +40,7 @@ public class Boot : MonoBehaviour
     {
         EntityManager entityManager = World.Active.EntityManager;
         Entity playerEntity = entityManager.Instantiate(playerEntityPrefab);
-        entityManager.AddComponents(playerEntity, new ComponentTypes(typeof(Player), typeof(Health), typeof(PlayerInput)));
+        entityManager.AddComponents(playerEntity, new ComponentTypes(typeof(PlayerComponent), typeof(Health), typeof(PlayerInput)));
         entityManager.SetComponentData(playerEntity, new Player {MaxSpeed = settings.PlayerMaxSpeed});
         entityManager.SetComponentData(playerEntity, new Health {Value = 100});
         playerInputBehaviour.SetPlayer(playerEntity);
