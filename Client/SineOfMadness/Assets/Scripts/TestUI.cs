@@ -11,7 +11,7 @@ namespace DefaultNamespace
         
         protected override void OnUpdate()
         {
-            ForEach((ref Player player, ref Health health) =>
+            Entities.ForEach((ref Player player, ref Health health) =>
             {
                 if (text == null)
                 {

@@ -14,9 +14,8 @@ namespace DefaultNamespace
         private Random rand = new Random((uint)DateTime.Now.Millisecond);
         protected override void OnUpdate()
         {
-            
             float elapsed = Time.deltaTime;
-            ForEach( (ref SpawnSource spawnSource) =>
+            Entities.ForEach( (ref SpawnSource spawnSource) =>
             {
                 Rect spawnArea = spawnSource.spawnArea;
                 spawnSource.currDelay -= elapsed;
