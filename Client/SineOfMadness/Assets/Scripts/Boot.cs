@@ -1,4 +1,5 @@
-﻿using DefaultNamespace;
+﻿using System;
+using DefaultNamespace;
 using SineOfMadness;
 using Unity.Entities;
 using Unity.Transforms;
@@ -10,9 +11,18 @@ public class Boot : MonoBehaviour
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemy1Prefab;
     [SerializeField] private GameSettings settings;
+
+    private static Boot instance;
+    public static Boot Instance => instance;
+    public static GameSettings Settings => Instance.settings;
     
     private Entity playerEntityPrefab;
     private Entity enemy1EntityPrefab;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     void Start()
     {
@@ -40,9 +50,10 @@ public class Boot : MonoBehaviour
     {
         EntityManager entityManager = World.Active.EntityManager;
         Entity playerEntity = entityManager.Instantiate(playerEntityPrefab);
-        entityManager.AddComponents(playerEntity, new ComponentTypes(typeof(PlayerComponent), typeof(Health), typeof(PlayerInput)));
+        entityManager.AddComponents(playerEntity, new ComponentTypes(typeof(PlayerInput)));
         entityManager.SetComponentData(playerEntity, new Player {MaxSpeed = settings.PlayerMaxSpeed});
-        entityManager.SetComponentData(playerEntity, new Health {Value = 100});
+        if(settings.MakePlayerInvincible)
+            entityManager.SetComponentData(playerEntity, new Health {Value = 25000});
         playerInputBehaviour.SetPlayer(playerEntity);
     }
 }

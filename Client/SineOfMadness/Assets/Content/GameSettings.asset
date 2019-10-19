@@ -13,3 +13,12 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   PlayerMaxSpeed: 0.1
+  PlayArea:
+    serializedVersion: 2
+    x: 0
+    y: 0
+    width: 10
+    height: 10
+  MakePlayerInvincible: 1
+  EnemyRadius: 0.5
+  PlayerRadius: 0.5

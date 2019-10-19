@@ -4,11 +4,11 @@ using Unity.Entities;
 namespace SineOfMadness
 {
     [Serializable]
-    public struct Enemy : IComponentData
+    public struct BulletTag : IComponentData
     {
     }
     
-    public class EnemyComponent : ComponentDataProxy<Enemy>
+    public class BulletTagComponent : ComponentDataProxy<Enemy>
     {
         
     }

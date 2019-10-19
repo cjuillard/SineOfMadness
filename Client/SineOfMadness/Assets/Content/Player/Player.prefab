@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 916765628343919760}
   - component: {fileID: 7793533551674838444}
   - component: {fileID: 1028285713487588036}
+  - component: {fileID: 8517284746459806528}
+  - component: {fileID: 8742622988811500223}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -67,6 +69,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -103,3 +106,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd48f95837fe41d18249cdf30fddba67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_SerializedData:
+    MaxSpeed: 0
+--- !u!114 &8517284746459806528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618387789101763530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 487a256749414dc6820ea3aef008da2b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedData:
+    Radius: 1
+--- !u!114 &8742622988811500223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1618387789101763530}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86573184dac141e3bbd2b1168d6790d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SerializedData:
+    Value: 5
