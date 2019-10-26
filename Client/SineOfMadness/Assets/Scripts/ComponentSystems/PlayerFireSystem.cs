@@ -11,6 +11,7 @@ namespace DefaultNamespace
     {
         protected override void OnUpdate()
         {
+            float bulletSpeed = Boot.Settings.BulletSpeed;
             Entity bulletPrototype = Boot.Instance.PlayerBulletEntity;
             float dt = Time.deltaTime;
             Entities.ForEach( (ref Player player, ref PlayerInput playerInput, ref Translation pos, ref Rotation rotation) =>
@@ -18,9 +19,8 @@ namespace DefaultNamespace
                 player.CurrFireCooldown -= dt;
                 if (player.CurrFireCooldown <= 0 && math.lengthsq(playerInput.Shoot) > .5f * .5f)
                 {
-//                    var newPos = pos + (rotation.Value * new float3(1, 0, 0));
                     var newBullet = PostUpdateCommands.Instantiate(bulletPrototype);
-                    float3 vel = math.mul(rotation.Value, new float3(0,0, 5));
+                    float3 vel = math.mul(rotation.Value, new float3(0,0, bulletSpeed));
                     PostUpdateCommands.AddComponent(newBullet, new Velocity
                     {
                         Value = vel.xy

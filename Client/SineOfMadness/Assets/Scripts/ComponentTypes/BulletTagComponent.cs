@@ -8,7 +8,7 @@ namespace SineOfMadness
     {
     }
     
-    public class BulletTagComponent : ComponentDataProxy<Enemy>
+    public class BulletTagComponent : ComponentDataProxy<BulletTag>
     {
         
     }

@@ -8,4 +8,5 @@ public class GameSettings : ScriptableObject
     public bool MakePlayerInvincible = false;
     public float EnemyRadius = 0.5f;
     public float PlayerRadius = 0.5f;
+    public float BulletSpeed = 10;
 }
