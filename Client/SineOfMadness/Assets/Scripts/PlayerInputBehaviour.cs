@@ -44,7 +44,7 @@ namespace DefaultNamespace
                     if (math.lengthsq(input.Shoot) > 0) input.Shoot = math.normalize(input.Shoot);
                 }
             }
-            
+
             World.Active.EntityManager.SetComponentData(player.Value, input);
         }
 

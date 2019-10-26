@@ -1,4 +1,5 @@
 using SineOfMadness;
+using Unity.Burst;
 using Unity.Entities;
 using Unity.Transforms;
 
@@ -11,6 +12,7 @@ public class RemoveDeadSystem : ComponentSystem
             if (health.Value <= 0)
             {
                 PostUpdateCommands.DestroyEntity(entity);
+
 //                if (EntityManager.HasComponent(entity, typeof(Player)))
 //                {
 ////                    Settings.PlayerDied();

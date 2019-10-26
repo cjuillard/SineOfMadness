@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -980,6 +980,8 @@ MonoBehaviour:
   playerPrefab: {fileID: 1618387789101763530, guid: daad9cf058e6baa46b51aca8113e32c0,
     type: 3}
   enemy1Prefab: {fileID: 1618387789101763530, guid: 7f7898a7a9c5e264da051fd50527e5be,
+    type: 3}
+  bulletPrefab: {fileID: 1618387789101763530, guid: ba6b886ce7ce7e2498340c00b904c0f5,
     type: 3}
   settings: {fileID: 11400000, guid: 5d4e46c24f879f34395217ca1e139977, type: 2}
 --- !u!4 &1997099286

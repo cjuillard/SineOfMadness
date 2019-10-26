@@ -10,6 +10,7 @@ public class Boot : MonoBehaviour
     [SerializeField] private PlayerInputBehaviour playerInputBehaviour;
     [SerializeField] private GameObject playerPrefab;
     [SerializeField] private GameObject enemy1Prefab;
+    [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private GameSettings settings;
 
     private static Boot instance;
@@ -18,6 +19,8 @@ public class Boot : MonoBehaviour
     
     private Entity playerEntityPrefab;
     private Entity enemy1EntityPrefab;
+    private Entity playerBulletEntity;
+    public Entity PlayerBulletEntity => playerBulletEntity;
 
     private void Awake()
     {
@@ -28,6 +31,8 @@ public class Boot : MonoBehaviour
     {
         playerEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(playerPrefab, World.Active);
         enemy1EntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemy1Prefab, World.Active);
+        playerBulletEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, World.Active);
+
         InitPlayer();
         InitEnemySpawns();
     }
