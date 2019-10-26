@@ -24,8 +24,8 @@ namespace DefaultNamespace
                     Entity spawnedEntity = PostUpdateCommands.Instantiate(spawnSource.spawnType);
                     PostUpdateCommands.SetComponent(spawnedEntity, new Translation
                     {
-                        Value = new float3(spawnArea.xMin + rand.NextFloat() * spawnArea.xMax - spawnArea.xMin,
-                            spawnArea.yMin + rand.NextFloat() * spawnArea.yMax - spawnArea.yMin,
+                        Value = new float3(spawnArea.xMin + rand.NextFloat() * (spawnArea.xMax - spawnArea.xMin),
+                            spawnArea.yMin + rand.NextFloat() * (spawnArea.yMax - spawnArea.yMin),
                             0)
                     });
 
