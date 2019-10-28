@@ -21,7 +21,8 @@ public class Boot : MonoBehaviour
     private Entity enemy1EntityPrefab;
     private Entity playerBulletEntity;
     public Entity PlayerBulletEntity => playerBulletEntity;
-
+    public Entity PlayerEntity { get; set; }
+    
     private void Awake()
     {
         instance = this;
@@ -56,9 +57,10 @@ public class Boot : MonoBehaviour
         EntityManager entityManager = World.Active.EntityManager;
         Entity playerEntity = entityManager.Instantiate(playerEntityPrefab);
         entityManager.AddComponents(playerEntity, new ComponentTypes(typeof(PlayerInput)));
-        entityManager.SetComponentData(playerEntity, new Player {MaxSpeed = settings.PlayerMaxSpeed});
         if(settings.MakePlayerInvincible)
             entityManager.SetComponentData(playerEntity, new Health {Value = 25000});
+
+        this.PlayerEntity = playerEntity;
         playerInputBehaviour.SetPlayer(playerEntity);
     }
 }
