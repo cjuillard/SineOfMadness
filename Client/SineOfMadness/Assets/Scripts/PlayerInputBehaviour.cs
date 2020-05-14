@@ -48,7 +48,7 @@ namespace DefaultNamespace
             World.Active.EntityManager.SetComponentData(player.Value, input);
         }
 
-        public void SetPlayer(Entity player)
+        public void SetPlayer(Entity? player)
         {
             this.player = player;
         }

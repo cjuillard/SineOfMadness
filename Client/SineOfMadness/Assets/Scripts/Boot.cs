@@ -1,6 +1,7 @@
 ﻿using System;
 using DefaultNamespace;
 using SineOfMadness;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
@@ -21,7 +22,7 @@ public class Boot : MonoBehaviour
     private Entity enemy1EntityPrefab;
     private Entity playerBulletEntity;
     public Entity PlayerBulletEntity => playerBulletEntity;
-    public Entity PlayerEntity { get; set; }
+    public Entity? PlayerEntity { get; set; }
     
     private void Awake()
     {
@@ -62,5 +63,20 @@ public class Boot : MonoBehaviour
 
         this.PlayerEntity = playerEntity;
         playerInputBehaviour.SetPlayer(playerEntity);
+    }
+
+    public void OnPlayerDeath()
+    {
+        EntityManager entityManager = World.Active.EntityManager;
+        EntityQuery enemies = entityManager.CreateEntityQuery(typeof(Enemy));
+        var enemyEntities = enemies.ToEntityArray(Allocator.TempJob);
+        entityManager.DestroyEntity(enemyEntities);
+        enemies.Dispose();
+        enemyEntities.Dispose();
+        
+        PlayerEntity = null;
+        playerInputBehaviour.SetPlayer(null);
+        
+        InitPlayer();
     }
 }

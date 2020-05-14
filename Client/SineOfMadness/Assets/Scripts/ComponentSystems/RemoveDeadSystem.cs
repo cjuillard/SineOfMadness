@@ -13,6 +13,10 @@ public class RemoveDeadSystem : ComponentSystem
             {
                 PostUpdateCommands.DestroyEntity(entity);
 
+                if (EntityManager.HasComponent<Player>(entity))
+                {
+                    Boot.Instance.OnPlayerDeath();
+                }
 //                if (EntityManager.HasComponent(entity, typeof(Player)))
 //                {
 ////                    Settings.PlayerDied();

@@ -14,6 +14,9 @@ namespace DefaultNamespace
         private Random rand = new Random((uint)DateTime.Now.Millisecond);
         protected override void OnUpdate()
         {
+            if (Boot.Instance.PlayerEntity == null)
+                return;
+            
             float elapsed = Time.deltaTime;
             Entities.ForEach( (ref SpawnSource spawnSource) =>
             {

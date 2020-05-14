@@ -12,14 +12,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 641409172bf548f399f917730f3791ca, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  PlayerMaxSpeed: 10
   PlayArea:
     serializedVersion: 2
     x: -40
     y: -30
     width: 80
     height: 60
-  MakePlayerInvincible: 1
+  MakePlayerInvincible: 0
   EnemyRadius: 0.5
   PlayerRadius: 0.5
   BulletSpeed: 25
