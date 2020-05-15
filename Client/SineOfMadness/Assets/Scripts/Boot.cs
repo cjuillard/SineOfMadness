@@ -34,7 +34,7 @@ public class Boot : MonoBehaviour
         playerEntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(playerPrefab, World.Active);
         enemy1EntityPrefab = GameObjectConversionUtility.ConvertGameObjectHierarchy(enemy1Prefab, World.Active);
         playerBulletEntity = GameObjectConversionUtility.ConvertGameObjectHierarchy(bulletPrefab, World.Active);
-
+    
         InitPlayer();
         InitEnemySpawns();
     }
