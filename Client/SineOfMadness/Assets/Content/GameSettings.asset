@@ -22,3 +22,7 @@ MonoBehaviour:
   EnemyRadius: 0.5
   PlayerRadius: 0.5
   BulletSpeed: 25
+  FlockmateRadius: 10
+  BoidCohesionAcceleration: -5
+  BoidAlignmentAcceleration: 0.1
+  BoidGoalAcceleration: 5

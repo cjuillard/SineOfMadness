@@ -8,4 +8,8 @@ public class GameSettings : ScriptableObject
     public float EnemyRadius = 0.5f;
     public float PlayerRadius = 0.5f;
     public float BulletSpeed = 10;
+    public float FlockmateRadius = 10;
+    public float BoidCohesionAcceleration = .1f;
+    public float BoidAlignmentAcceleration = .1f;
+    public float BoidGoalAcceleration = .2f;
 }

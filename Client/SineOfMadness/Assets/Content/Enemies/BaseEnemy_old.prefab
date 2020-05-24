@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 5764029286885909328}
   - component: {fileID: 6686433182081166238}
   - component: {fileID: 9082119839452167334}
-  - component: {fileID: 2936507598979440375}
   m_Layer: 0
   m_Name: BaseEnemy
   m_TagString: Untagged
@@ -163,19 +162,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SerializedData:
     Value: 5
---- !u!114 &2936507598979440375
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1618387789101763530}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8754a663744bde80d32c8c3ab213ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_SerializedData:
-    Value:
-      x: 0
-      y: 0
